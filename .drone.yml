@@ -34,7 +34,7 @@ steps:
       from_secret: docker_hub_password
   settings:
     username: boulundeasv
-    password: $DOCKER_HUB_PASSWORD
+    password: Cuzrsuvu7
     repo: boulundeasv/demo-website
     tags:
     - latest
