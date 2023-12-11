@@ -1,0 +1,7 @@
+services:
+  website:
+    image: demo-website
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
