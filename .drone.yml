@@ -36,7 +36,8 @@ steps:
     repo: boulundeasv/demo-website
     tags:
     - latest
-    - main
+    - $DRONE_BUILD_NUMBER
+    - staging
 
 trigger:
   branch:
