@@ -21,7 +21,7 @@ steps:
   image: alpine
   environment:
     DOCKER_HUB_PASSWORD:
-      from_secret: DockerHubPassword
+      from_secret: docker_hub_password
   commands:
     - echo "You can call the secrets like this examples below."
     - echo $DOCKER_HUB_PASSWORD
