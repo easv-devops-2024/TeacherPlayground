@@ -19,9 +19,12 @@ steps:
 steps:
 - name: docker
   image: plugins/docker
+  environment:
+    DOCKER_HUB_PASSWORD:
+      from_secret: DockerHubPassword
   settings:
     username: boulundeasv
-    password: pa55word
+    password: $DOCKER_HUB_PASSWORD
     repo: boulundeasv/demo-website
     tags:
     - latest
