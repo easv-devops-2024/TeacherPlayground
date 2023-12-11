@@ -29,12 +29,10 @@ steps:
 
 - name: docker
   image: plugins/docker
-  environment:
-    DOCKER_HUB_PASSWORD:
-      from_secret: docker_hub_password
   settings:
     username: boulundeasv
-    password: "$DOCKER_HUB_PASSWORD"
+    password:
+      from_secret: docker_hub_password
     repo: boulundeasv/demo-website
     tags:
     - latest
