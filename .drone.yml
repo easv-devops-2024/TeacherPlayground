@@ -17,6 +17,16 @@ steps:
 #   - docker ps -a
 
 steps:
+- name: build
+  image: alpine
+  environment:
+    DOCKER_HUB_PASSWORD:
+      from_secret: DockerHubPassword
+  commands:
+    - echo "You can call the secrets like this examples below."
+    - echo $DOCKER_HUB_PASSWORD
+    - echo "In both cases, and for security reasons, you will see asteriks '*******' instead the value under the echo command."
+
 - name: docker
   image: plugins/docker
   environment:
