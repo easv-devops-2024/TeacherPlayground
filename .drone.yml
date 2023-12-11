@@ -1,0 +1,34 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+# - name: test
+#   image: mcr.microsoft.com/dotnet/sdk
+#   commands:
+#   - dotnet build
+#   - dotnet test
+# - name: deliver
+#   image: docker:dind
+#   commands:
+#   - sleep 5 # give docker enough time to start
+#   - docker ps -a
+#   - docker run -d hello-world
+#   - docker ps -a
+
+steps:
+- name: docker
+  image: plugins/docker
+  settings:
+    username: boulundeasv
+    password: pa55word
+    repo: boulundeasv/demo-website
+    tags:
+    - latest
+    - main
+    ssh-agent-key:
+      from_secret: private_key
+
+trigger:
+  branch:
+  - main
