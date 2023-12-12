@@ -2,6 +2,12 @@ kind: pipeline
 type: docker
 name: default
 
+trigger:
+  event:
+  - push
+  branch:
+  - main
+
 steps:
 - name: build
   image: alpine
@@ -24,17 +30,15 @@ steps:
     - ${DRONE_BUILD_NUMBER}
     - staging
 
-trigger:
-  event:
-  - push
-  branch:
-  - main
-
 ---
 
 kind: pipeline
 type: docker
 name: deploy
+
+trigger:
+  event:
+    - promote
 
 steps:
 - name: docker
@@ -43,9 +47,7 @@ steps:
     username: boulundeasv
     password:
       from_secret: docker_hub_password
-    repo: boulundeasv/demo-website:${DRONE_BUILD_PARENT}
+    repo: boulundeasv/demo-website
     tags:
     - production
-  when:
-    event:
-      - promote
+
