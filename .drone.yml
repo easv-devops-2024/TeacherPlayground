@@ -40,6 +40,10 @@ steps:
 artifact:
   path: /drone/src/artifact.txt
 
+volumes:
+  - name: shared-data
+    path: /drone/src
+
 ---
 
 kind: pipeline
