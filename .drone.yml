@@ -37,6 +37,9 @@ steps:
     - ${DRONE_BUILD_NUMBER}
     - staging
 
+artifact:
+  path: artifact.txt
+
 ---
 
 kind: pipeline
@@ -57,6 +60,3 @@ steps:
     repo: boulundeasv/demo-website
     tags:
     - production
-
-artifact:
-  path: artifact.txt
