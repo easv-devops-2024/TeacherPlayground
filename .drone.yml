@@ -42,6 +42,8 @@ steps:
   commands:
     - echo "Promoting build"
     - echo $DRONE_TAG
+    - echo $DRONE_BUILD_NUMBER
+
   trigger:
     event:
       - promote
