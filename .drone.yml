@@ -47,6 +47,5 @@ steps:
   trigger:
     event:
       - promote
-      - rollback
     target:
       - production
