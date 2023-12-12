@@ -23,9 +23,8 @@ steps:
     DOCKER_HUB_PASSWORD:
       from_secret: docker_hub_password
   commands:
-    - echo "You can call the secrets like this examples below."
-    - echo $DOCKER_HUB_PASSWORD
-    - echo "In both cases, and for security reasons, you will see asteriks '*******' instead the value under the echo command."
+    - echo "The build number is:"
+    - echo $DRONE_BUILD_NUMBER
 
 - name: docker
   image: plugins/docker
