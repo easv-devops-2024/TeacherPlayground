@@ -35,7 +35,7 @@ steps:
     repo: boulundeasv/demo-website
     tags:
     - latest
-    - $DRONE_BUILD_NUMBER
+    - "$DRONE_BUILD_NUMBER"
     - staging
 
 trigger:
