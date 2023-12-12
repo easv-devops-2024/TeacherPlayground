@@ -25,6 +25,8 @@ steps:
     - staging
 
 trigger:
+  event:
+  - push
   branch:
   - main
 
