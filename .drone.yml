@@ -23,7 +23,7 @@ steps:
   image: alpine
   commands:
     - echo "Storing artifact..."
-    - echo "This is an artifact file." > artifact.txt
+    - echo "This is an artifact file." > /drone/source/artifact.txt
 
 - name: docker
   image: plugins/docker
@@ -38,7 +38,7 @@ steps:
     - staging
 
 artifact:
-  path: artifact.txt
+  path: /drone/source/artifact.txt
 
 ---
 
