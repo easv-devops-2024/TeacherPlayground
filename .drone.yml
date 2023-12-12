@@ -3,20 +3,6 @@ type: docker
 name: default
 
 steps:
-# - name: test
-#   image: mcr.microsoft.com/dotnet/sdk
-#   commands:
-#   - dotnet build
-#   - dotnet test
-# - name: deliver
-#   image: docker:dind
-#   commands:
-#   - sleep 5 # give docker enough time to start
-#   - docker ps -a
-#   - docker run -d hello-world
-#   - docker ps -a
-
-steps:
 - name: build
   image: alpine
   environment:
@@ -41,3 +27,22 @@ steps:
 trigger:
   branch:
   - main
+
+---
+
+kind: pipeline
+type: docker
+name: deploy
+
+steps:
+- name: Deploy frontend deployment
+  image: alpine
+  commands:
+    - echo "Promoting build"
+    - echo $DRONE_TAG
+  trigger:
+    event:
+      - promote
+      - rollback
+    target:
+      - production
