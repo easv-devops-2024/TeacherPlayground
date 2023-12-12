@@ -37,12 +37,15 @@ type: docker
 name: deploy
 
 steps:
-- name: Deploy frontend deployment
-  image: alpine
-  commands:
-    - echo "Promoting build"
-    - echo $DRONE_BUILD_PARENT
-
-  trigger:
+- name: docker
+  image: plugins/docker
+  settings:
+    username: boulundeasv
+    password:
+      from_secret: docker_hub_password
+    repo: boulundeasv/demo-website:${DRONE_BUILD_PARENT}
+    tags:
+    - production
+  when:
     event:
       - promote
