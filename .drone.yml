@@ -18,6 +18,13 @@ steps:
     - echo "The build number is:"
     - echo $DRONE_BUILD_NUMBER
 
+  # Store a file artifact
+- name: store_artifact
+  image: alpine
+  commands:
+    - echo "Storing artifact..."
+    - echo "This is an artifact file." > artifact.txt
+
 - name: docker
   image: plugins/docker
   settings:
@@ -51,3 +58,5 @@ steps:
     tags:
     - production
 
+artifact:
+  path: artifact.txt
