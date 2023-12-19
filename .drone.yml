@@ -19,7 +19,7 @@ steps:
     - echo $DRONE_BUILD_NUMBER
 
 - name: test
-  image: mcr.microsoft.com/dotnet/
+  image: mcr.microsoft.com/dotnet/sdk
   commands:
     - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
