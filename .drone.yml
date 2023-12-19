@@ -51,7 +51,7 @@ steps:
 #     tags:
 #     - latest
 #     - ${DRONE_BUILD_NUMBER}
-#     - staging
+#     - staging 
 
 artifact:
   path: /drone/src/artifact.txt
