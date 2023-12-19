@@ -18,6 +18,11 @@ steps:
     - echo "The build number is:"
     - echo $DRONE_BUILD_NUMBER
 
+- name: test
+  image: mcr.microsoft.com/dotnet/core/sdk
+  commands:
+    - dotnet test --no-build --logger "trx;LogFileName=test-results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
   # Store a file artifact
 - name: store_artifact
   image: alpine
