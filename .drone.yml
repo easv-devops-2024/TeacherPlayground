@@ -19,16 +19,27 @@ steps:
     - echo $DRONE_BUILD_NUMBER
 
 - name: test
-  image: mcr.microsoft.com/dotnet/sdk
+  image: mcr.microsoft.com/dotnet/core/sdk:3.1
   commands:
-    - dotnet test --no-build --logger "trx;LogFileName=test-results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
-  # Store a file artifact
-- name: store_artifact
-  image: alpine
+- name: publish
+  image: coverlet/coverlet
   commands:
-    - echo "Storing artifact..."
-    - echo "This is an artifact file." > /drone/src/artifact.txt
+    - coverlet ./UnitTests/coverage.opencover.xml --target "dotnet" --targetargs "test ./YourTestProject/YourTestProject.csproj --no-build" --format opencover --output ./coverage/
+
+# - name: test
+#   image: mcr.microsoft.com/dotnet/sdk
+#   commands:
+#     - dotnet add package coverlet.collector
+#     - dotnet test --logger "trx;LogFileName=test-results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage
+
+#   # Store a file artifact
+# - name: store_artifact
+#   image: alpine
+#   commands:
+#     - echo "Storing artifact..."
+#     - echo "This is an artifact file." > /drone/src/artifact.txt
 
 - name: docker
   image: plugins/docker
