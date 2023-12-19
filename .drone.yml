@@ -40,6 +40,7 @@ steps:
 #   commands:
 #     - echo "Storing artifact..."
 #     - echo "This is an artifact file." > /drone/src/artifact.txt
+#
 
 # - name: docker
 #   image: plugins/docker
