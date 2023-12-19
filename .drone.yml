@@ -23,10 +23,10 @@ steps:
   commands:
     - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
-- name: publish
-  image: coverlet/coverlet
-  commands:
-    - coverlet ./UnitTests/coverage.opencover.xml --target "dotnet" --targetargs "test ./YourTestProject/YourTestProject.csproj --no-build" --format opencover --output ./coverage/
+# - name: publish
+#   image: coverlet/coverlet
+#   commands:
+#     - coverlet ./UnitTests/coverage.opencover.xml --target "dotnet" --targetargs "test ./YourTestProject/YourTestProject.csproj --no-build" --format opencover --output ./coverage/
 
 # - name: test
 #   image: mcr.microsoft.com/dotnet/sdk
@@ -41,17 +41,17 @@ steps:
 #     - echo "Storing artifact..."
 #     - echo "This is an artifact file." > /drone/src/artifact.txt
 
-- name: docker
-  image: plugins/docker
-  settings:
-    username: boulundeasv
-    password:
-      from_secret: docker_hub_password
-    repo: boulundeasv/demo-website
-    tags:
-    - latest
-    - ${DRONE_BUILD_NUMBER}
-    - staging
+# - name: docker
+#   image: plugins/docker
+#   settings:
+#     username: boulundeasv
+#     password:
+#       from_secret: docker_hub_password
+#     repo: boulundeasv/demo-website
+#     tags:
+#     - latest
+#     - ${DRONE_BUILD_NUMBER}
+#     - staging
 
 artifact:
   path: /drone/src/artifact.txt
