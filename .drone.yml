@@ -24,7 +24,15 @@ steps:
     - cd UnitTests/
     - dotnet add package coverlet.msbuild
     - cd ..
-    - dotnet test /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover 
+    - dotnet test /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
+
+- name: coveralls
+  image: lizheming/drone-coveralls
+  settings:
+    token:
+      from_secret: coveralls_token
+    files:
+    - ./lcov.info
 
 # - name: publish-coverage
 #   image: mcr.microsoft.com/dotnet/sdk
