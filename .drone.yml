@@ -32,7 +32,7 @@ steps:
     token:
       from_secret: coveralls_token
     files:
-    - ./lcov.info
+    - /drone/src/UnitTests/coverage.opencover.xml'
 
 # - name: publish-coverage
 #   image: mcr.microsoft.com/dotnet/sdk
