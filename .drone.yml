@@ -9,10 +9,6 @@ name: default
 #   branch:
 #   - main
 
-settings:
-  github:
-    secret: TBMH-EASV-2023
-
 steps:
 - name: build
   image: mcr.microsoft.com/dotnet/sdk
