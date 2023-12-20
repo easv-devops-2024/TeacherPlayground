@@ -19,7 +19,7 @@ steps:
     - echo $DRONE_BUILD_NUMBER
 
 - name: test
-  image: mcr.microsoft.com/dotnet/sdk:5.0
+  image: mcr.microsoft.com/dotnet/sdk
   commands:
     - dotnet test --collect:"XPlat Code Coverage"
 
