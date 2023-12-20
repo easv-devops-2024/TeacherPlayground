@@ -8,6 +8,11 @@ name: default
 #   branch:
 #   - main
 
+trigger:
+  event:
+    - push
+    - pull_request
+
 steps:
 - name: build
   image: alpine
