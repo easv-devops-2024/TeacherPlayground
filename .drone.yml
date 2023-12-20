@@ -34,39 +34,7 @@ steps:
   commands:
     - dotnet tool install -g coveralls.net
     - export PATH="$PATH:/root/.dotnet/tools"
-    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml
-
-
-# - name: publish-coverage
-#   image: mcr.microsoft.com/dotnet/sdk
-#   commands:
-#     - dotnet tool install -g coverlet.console
-#     - export PATH="$PATH:/root/.dotnet/tools"
-#     - coverlet ./UnitTests/bin/**/*.dll --target "dotnet" --targetargs "test --no-build" --format opencover
-
-# - name: test
-#   image: mcr.microsoft.com/dotnet/sdk
-#   commands:
-#     - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-
-# - name: publish
-#   image: coverlet/coverlet
-#   commands:
-#     - coverlet ./UnitTests/coverage.opencover.xml --target "dotnet" --targetargs "test ./YourTestProject/YourTestProject.csproj --no-build" --format opencover --output ./coverage/
-
-# - name: test
-#   image: mcr.microsoft.com/dotnet/sdk
-#   commands:
-#     - dotnet add package coverlet.collector
-#     - dotnet test --logger "trx;LogFileName=test-results.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage
-
-#   # Store a file artifact
-# - name: store_artifact
-#   image: alpine
-#   commands:
-#     - echo "Storing artifact..."
-#     - echo "This is an artifact file." > /drone/src/artifact.txt
-#
+    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor $DRONE_COMMIT_AUTHOR --commitEmail $DRONE_COMMIT_AUTHOR_EMAIL --commitMessage $DRONE_COMMIT_MESSAGE --repoToken $COVERALLS_REPO_TOKEN
 
 # - name: docker
 #   image: plugins/docker

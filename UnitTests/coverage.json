@@ -1,0 +1,46 @@
+{
+  "DemoApp.dll": {
+    "/Users/thomasboulundmenghansen/PlaygroundSetup/DemoApp/Program.cs": {
+      "Program": {
+        "System.Void Program::Main()": {
+          "Lines": {
+            "6": 0,
+            "7": 0,
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String Program::GetGreetingMessage()": {
+          "Lines": {
+            "11": 2,
+            "12": 2,
+            "14": 2,
+            "15": 1,
+            "16": 1,
+            "19": 1,
+            "20": 1,
+            "22": 2
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 25,
+              "EndOffset": 27,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 14,
+              "Offset": 25,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}
