@@ -27,4 +27,10 @@ public class ProgramTests
         // Assert
         Assert.Equal("Hello, World!", result);
     }
+
+    [Fact]
+    public void Hit()
+    {
+        Program.Main();
+    }
 }
