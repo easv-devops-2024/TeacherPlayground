@@ -26,10 +26,10 @@ steps:
     - cd ..
     - dotnet test /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
 
-  - name: coveralls
-    image: coveralls/coveralls-github-action
-    env:
-      COVERALLS_REPO_TOKEN: $COVERALLS_REPO_TOKEN
+- name: coveralls
+  image: coveralls/coveralls-github-action
+  env:
+    COVERALLS_REPO_TOKEN: $COVERALLS_REPO_TOKEN
 
 # - name: publish-coverage
 #   image: mcr.microsoft.com/dotnet/sdk
