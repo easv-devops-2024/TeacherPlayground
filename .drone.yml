@@ -2,11 +2,11 @@ kind: pipeline
 type: docker
 name: default
 
-trigger:
-  event:
-  - push
-  branch:
-  - main
+# trigger:
+#   event:
+#   - push
+#   branch:
+#   - main
 
 steps:
 - name: build
