@@ -25,7 +25,7 @@ steps:
     - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
 
 - name: publish-coverage
-  image: mcr.microsoft.com/dotnet/sdk:6.0
+  image: mcr.microsoft.com/dotnet/sdk:6.0 # Using 6.0 by intention since coveralls is not supported by the latest version of dotnet
   environment:
     COVERALLS_REPO_TOKEN:
       from_secret: coveralls_token
@@ -34,24 +34,17 @@ steps:
     - export PATH="$PATH:/root/.dotnet/tools"
     - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --jobId $DRONE_BUILD_NUMBER --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor "$DRONE_COMMIT_AUTHOR" --commitEmail "$DRONE_COMMIT_AUTHOR_EMAIL" --commitMessage "$DRONE_COMMIT_MESSAGE" --useRelativePaths
 
-# - name: docker
-#   image: plugins/docker
-#   settings:
-#     username: boulundeasv
-#     password:
-#       from_secret: docker_hub_password
-#     repo: boulundeasv/demo-website
-#     tags:
-#     - latest
-#     - ${DRONE_BUILD_NUMBER}
-#     - staging 
-
-# artifact:
-#   path: /drone/src/artifact.txt
-
-# volumes:
-#   - name: shared-data
-#     path: /drone/src
+- name: docker
+  image: plugins/docker
+  settings:
+    username: boulundeasv
+    password:
+      from_secret: docker_hub_password
+    repo: boulundeasv/demo-website
+    tags:
+    - latest
+    - ${DRONE_BUILD_NUMBER}
+    - staging 
 
 # ---
 
