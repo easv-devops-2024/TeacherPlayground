@@ -23,8 +23,8 @@ steps:
   commands:
     - cd UnitTests/
     - dotnet add package coverlet.msbuild
-    - dotnet test /p:CollectCoverage=true /p:CoverletOutput=$root\coverage /p:CoverletOutputFormat=opencover 
-    - cd ..    
+    - cd ..
+    - dotnet test /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover 
 
 # - name: publish-coverage
 #   image: mcr.microsoft.com/dotnet/sdk
