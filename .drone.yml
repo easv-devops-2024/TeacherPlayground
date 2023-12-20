@@ -2,12 +2,12 @@ kind: pipeline
 type: docker
 name: ci
 
-trigger:
-  event:
-    - push
-    - custom
-  branch:
-    - main
+# trigger:
+#   event:
+#     - push
+#     - custom
+#   branch:
+#     - main
 
 steps:
 - name: build
