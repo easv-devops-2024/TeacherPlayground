@@ -21,7 +21,8 @@ steps:
 - name: test
   image: mcr.microsoft.com/dotnet/sdk
   commands:
-    - dotnet test --collect:"XPlat Code Coverage"
+    - dotnet add package coverlet.msbuild
+    - dotnet test /p:CollectCoverage=true /p:CoverletOutput=$root\coverage /p:CoverletOutputFormat=opencover     
 
 - name: publish-coverage
   image: mcr.microsoft.com/dotnet/sdk
