@@ -23,6 +23,12 @@ steps:
   commands:
     - dotnet test --collect:"XPlat Code Coverage"
 
+- name: publish-coverage
+  image: mcr.microsoft.com/dotnet/sdk
+  commands:
+    - dotnet tool install -g coverlet.console
+    - coverlet ./UnitTests/bin/**/*.dll --target "dotnet" --targetargs "test --no-build" --format opencover
+
 # - name: test
 #   image: mcr.microsoft.com/dotnet/sdk
 #   commands:
