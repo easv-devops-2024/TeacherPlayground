@@ -21,15 +21,17 @@ steps:
 - name: test
   image: mcr.microsoft.com/dotnet/sdk
   commands:
+    - cd UnitTests/
     - dotnet add package coverlet.msbuild
+    - cd ..
     - dotnet test /p:CollectCoverage=true /p:CoverletOutput=$root\coverage /p:CoverletOutputFormat=opencover     
 
-- name: publish-coverage
-  image: mcr.microsoft.com/dotnet/sdk
-  commands:
-    - dotnet tool install -g coverlet.console
-    - export PATH="$PATH:/root/.dotnet/tools"
-    - coverlet ./UnitTests/bin/**/*.dll --target "dotnet" --targetargs "test --no-build" --format opencover
+# - name: publish-coverage
+#   image: mcr.microsoft.com/dotnet/sdk
+#   commands:
+#     - dotnet tool install -g coverlet.console
+#     - export PATH="$PATH:/root/.dotnet/tools"
+#     - coverlet ./UnitTests/bin/**/*.dll --target "dotnet" --targetargs "test --no-build" --format opencover
 
 # - name: test
 #   image: mcr.microsoft.com/dotnet/sdk
