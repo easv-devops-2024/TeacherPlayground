@@ -28,6 +28,9 @@ steps:
 
 - name: publish-coverage
   image: mcr.microsoft.com/dotnet/sdk:6.0
+  environment:
+    COVERALLS_REPO_TOKEN:
+      from_secret: coveralls_token
   commands:
     - dotnet tool install -g coveralls.net
     - export PATH="$PATH:/root/.dotnet/tools"
