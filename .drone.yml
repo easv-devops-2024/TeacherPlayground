@@ -4,10 +4,10 @@ name: ci
 
 trigger:
   event:
-  - push
-  - custom
+    - push
+    - custom
   branch:
-  - main
+    - main
 
 steps:
 - name: build
