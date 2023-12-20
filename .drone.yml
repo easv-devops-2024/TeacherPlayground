@@ -22,7 +22,7 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk
   commands:
     - dotnet add UnitTests/UnitTests.csproj package coverlet.msbuild
-    - dotnet test --nobuild /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
+    - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
 
 - name: publish-coverage
   image: mcr.microsoft.com/dotnet/sdk:6.0
