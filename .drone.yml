@@ -19,9 +19,14 @@ steps:
     - echo $DRONE_BUILD_NUMBER
 
 - name: test
-  image: mcr.microsoft.com/dotnet/sdk
+  image: mcr.microsoft.com/dotnet/sdk:5.0
   commands:
-    - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    - dotnet test --collect:"XPlat Code Coverage"
+
+# - name: test
+#   image: mcr.microsoft.com/dotnet/sdk
+#   commands:
+#     - dotnet test ./UnitTests/UnitTests.csproj --collect:'XPlat Code Coverage' /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 
 # - name: publish
 #   image: coverlet/coverlet
@@ -54,30 +59,30 @@ steps:
 #     - ${DRONE_BUILD_NUMBER}
 #     - staging 
 
-artifact:
-  path: /drone/src/artifact.txt
+# artifact:
+#   path: /drone/src/artifact.txt
 
-volumes:
-  - name: shared-data
-    path: /drone/src
+# volumes:
+#   - name: shared-data
+#     path: /drone/src
 
----
+# ---
 
-kind: pipeline
-type: docker
-name: deploy
+# kind: pipeline
+# type: docker
+# name: deploy
 
-trigger:
-  event:
-    - promote
+# trigger:
+#   event:
+#     - promote
 
-steps:
-- name: docker
-  image: plugins/docker
-  settings:
-    username: boulundeasv
-    password:
-      from_secret: docker_hub_password
-    repo: boulundeasv/demo-website
-    tags:
-    - production
+# steps:
+# - name: docker
+#   image: plugins/docker
+#   settings:
+#     username: boulundeasv
+#     password:
+#       from_secret: docker_hub_password
+#     repo: boulundeasv/demo-website
+#     tags:
+#     - production
