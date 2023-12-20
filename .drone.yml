@@ -34,7 +34,7 @@ steps:
   commands:
     - dotnet tool install -g coveralls.net
     - export PATH="$PATH:/root/.dotnet/tools"
-    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor $DRONE_COMMIT_AUTHOR --commitEmail $DRONE_COMMIT_AUTHOR_EMAIL --repoToken $COVERALLS_REPO_TOKEN
+    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH
 
 # - name: docker
 #   image: plugins/docker
