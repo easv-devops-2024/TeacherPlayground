@@ -25,6 +25,8 @@ steps:
     - dotnet add package coverlet.msbuild
     - cd ..
     - dotnet test /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
+    - dotnet tool install -g coveralls.net
+    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml
 
 - name: coveralls
   image: coveralls/coveralls-github-action
