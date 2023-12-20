@@ -27,6 +27,7 @@ steps:
   image: mcr.microsoft.com/dotnet/sdk
   commands:
     - dotnet tool install -g coverlet.console
+    - export PATH="$PATH:/root/.dotnet/tools"
     - coverlet ./UnitTests/bin/**/*.dll --target "dotnet" --targetargs "test --no-build" --format opencover
 
 # - name: test
