@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: default
+name: ci
 
 trigger:
   event:
@@ -33,6 +33,13 @@ steps:
     - dotnet tool install -g coveralls.net
     - export PATH="$PATH:/root/.dotnet/tools"
     - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --jobId $DRONE_BUILD_NUMBER --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor "$DRONE_COMMIT_AUTHOR" --commitEmail "$DRONE_COMMIT_AUTHOR_EMAIL" --commitMessage "$DRONE_COMMIT_MESSAGE" --useRelativePaths
+
+---
+
+kind: pipeline
+type: docker
+depends_on: ci
+name: cd
 
 - name: docker
   image: plugins/docker
