@@ -42,6 +42,7 @@ depends_on:
   - ci
 name: cd
 
+steps:
 - name: docker
   image: plugins/docker
   settings:
