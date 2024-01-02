@@ -72,6 +72,6 @@ steps:
      username: boulundeasv
      password:
        from_secret: docker_hub_password
-     repo: boulundeasv/demo-website
+     repo: boulundeasv/demo-website:${DRONE_BUILD_PARENT}
      tags:
      - production
