@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: ci
+name: integration
 
 trigger:
   event:
@@ -38,9 +38,9 @@ steps:
 
 kind: pipeline
 type: docker
-depends_on: 
-  - ci
-name: cd
+name: delivery
+depends_on:
+  - integration
 
 steps:
 - name: docker
@@ -55,23 +55,23 @@ steps:
     - ${DRONE_BUILD_NUMBER}
     - staging 
 
-# ---
+---
 
-# kind: pipeline
-# type: docker
-# name: deploy
+ kind: pipeline
+ type: docker
+ name: deploy
 
-# trigger:
-#   event:
-#     - promote
+ trigger:
+   event:
+     - promote
 
-# steps:
-# - name: docker
-#   image: plugins/docker
-#   settings:
-#     username: boulundeasv
-#     password:
-#       from_secret: docker_hub_password
-#     repo: boulundeasv/demo-website
-#     tags:
-#     - production
+ steps:
+ - name: docker
+   image: plugins/docker
+   settings:
+     username: boulundeasv
+     password:
+       from_secret: docker_hub_password
+     repo: boulundeasv/demo-website
+     tags:
+     - production
