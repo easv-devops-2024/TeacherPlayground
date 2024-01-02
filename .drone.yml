@@ -59,7 +59,7 @@ steps:
 
  kind: pipeline
  type: docker
- name: deploy
+ name: deployment
 
  trigger:
    event:
