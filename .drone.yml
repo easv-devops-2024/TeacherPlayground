@@ -5,7 +5,7 @@ name: integration
 trigger:
   event:
     - push
-    - custom
+    - custom # trigger from UI
   branch:
     - main
 
@@ -45,6 +45,7 @@ depends_on:
 trigger:
   event:
     - push
+    - custom
   branch:
     - main
 
