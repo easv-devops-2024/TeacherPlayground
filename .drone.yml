@@ -50,7 +50,7 @@ steps:
     - dotnet tool install --global dotnet-coverage
     - export PATH="$PATH:/root/.dotnet/tools" # We need to make sure that the tool is findable
     - dotnet sonarscanner begin /k:"easv-devops-2024_TeacherPlayground_AY0WtXwFmPh8a7KzfUci" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="sqp_c7e79ddcd7138c5a70d76a9ae84f3966b416b740"
-    - dotnet build
+    - dotnet build --no-incremental
     - dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
     - dotnet sonarscanner end /d:sonar.token="sqp_c7e79ddcd7138c5a70d76a9ae84f3966b416b740"
 
