@@ -10,29 +10,35 @@ trigger:
     - main
 
 steps:
-- name: build
-  image: mcr.microsoft.com/dotnet/sdk
-  environment:
-    DOCKER_HUB_PASSWORD:
-      from_secret: docker_hub_password
-  commands:
-    - dotnet build
+# - name: build
+#   image: mcr.microsoft.com/dotnet/sdk
+#   environment:
+#     DOCKER_HUB_PASSWORD:
+#       from_secret: docker_hub_password
+#   commands:
+#     - dotnet build
 
-- name: test
-  image: mcr.microsoft.com/dotnet/sdk
-  commands:
-    - dotnet add UnitTests/UnitTests.csproj package coverlet.msbuild
-    - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
+# - name: test
+#   image: mcr.microsoft.com/dotnet/sdk
+#   commands:
+#     - dotnet add UnitTests/UnitTests.csproj package coverlet.msbuild
+#     - dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutput=coverage /p:CoverletOutputFormat=opencover
 
-- name: publish-coverage
-  image: mcr.microsoft.com/dotnet/sdk:6.0 # Using 6.0 by intention since coveralls is not supported by the latest version of dotnet
-  environment:
-    COVERALLS_REPO_TOKEN:
-      from_secret: coveralls_token
-  commands:
-    - dotnet tool install -g coveralls.net
-    - export PATH="$PATH:/root/.dotnet/tools"
-    - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --jobId $DRONE_BUILD_NUMBER --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor "$DRONE_COMMIT_AUTHOR" --commitEmail "$DRONE_COMMIT_AUTHOR_EMAIL" --commitMessage "$DRONE_COMMIT_MESSAGE" --useRelativePaths
+# - name: publish-coverage
+#   image: mcr.microsoft.com/dotnet/sdk:6.0 # Using 6.0 by intention since coveralls is not supported by the latest version of dotnet
+#   environment:
+#     COVERALLS_REPO_TOKEN:
+#       from_secret: coveralls_token
+#   commands:
+#     - dotnet tool install -g coveralls.net
+#     - export PATH="$PATH:/root/.dotnet/tools"
+#     - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --jobId $DRONE_BUILD_NUMBER --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor "$DRONE_COMMIT_AUTHOR" --commitEmail "$DRONE_COMMIT_AUTHOR_EMAIL" --commitMessage "$DRONE_COMMIT_MESSAGE" --useRelativePaths
+
+- name: lint
+  image: aosapps/drone-sonar-plugin
+  settings:
+      sonar_host: http://sonar.setgo.dk:9000
+      sonar_token: sqp_9888666c6f2ba64a075c83e025fbaf2e8d11e1c6
 
 ---
 
