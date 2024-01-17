@@ -20,4 +20,9 @@ public class Program
             return "Hello, World!";
         }
     }
+
+    public static int Sum(int a, int b)
+    {
+        return a + b;
+    }
 }
