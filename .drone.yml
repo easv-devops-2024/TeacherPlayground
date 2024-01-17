@@ -34,13 +34,21 @@ steps:
 #     - export PATH="$PATH:/root/.dotnet/tools"
 #     - csmacnz.Coveralls --opencover -i UnitTests/coverage.opencover.xml --jobId $DRONE_BUILD_NUMBER --commitId $DRONE_COMMIT_SHA --commitBranch $DRONE_COMMIT_BRANCH --commitAuthor "$DRONE_COMMIT_AUTHOR" --commitEmail "$DRONE_COMMIT_AUTHOR_EMAIL" --commitMessage "$DRONE_COMMIT_MESSAGE" --useRelativePaths
 
-- name: lint
-  image: aosapps/drone-sonar-plugin
-  settings:
-    sonar_host:
-      from_secret: sonar_host
-    sonar_token:
-      from_secret: sonar_token
+# - name: lint
+#   image: aosapps/drone-sonar-plugin
+#   settings:
+#     sonar_host:
+#       from_secret: sonar_host
+#     sonar_token:
+#       from_secret: sonar_token
+
+- name: code-analysis
+  image: mcr.microsoft.com/dotnet/sdk
+  commands:
+    - dotnet tool install --global dotnet-sonarscanner
+    - dotnet sonarscanner begin /k:"easv-devops-2024_TeacherPlayground_AY0WtXwFmPh8a7KzfUci" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="sqp_c7e79ddcd7138c5a70d76a9ae84f3966b416b740"
+    - dotnet build
+    - dotnet sonarscanner end /d:sonar.token="sqp_c7e79ddcd7138c5a70d76a9ae84f3966b416b740"
 
 ---
 
