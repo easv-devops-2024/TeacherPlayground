@@ -30,4 +30,9 @@ public class Program
     {
         return b - a;
     }
+
+    public static int Divide(int a, int b)
+    {
+        return b / a;
+    }
 }
