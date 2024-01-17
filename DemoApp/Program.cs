@@ -25,4 +25,9 @@ public class Program
     {
         return a + b;
     }
+
+    public static int Subtract(int a, int b)
+    {
+        return b - a;
+    }
 }
