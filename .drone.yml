@@ -38,7 +38,7 @@ steps:
   image: aosapps/drone-sonar-plugin
   settings:
       sonar_host: http://sonar.setgo.dk:9000
-      sonar_token: sqp_9888666c6f2ba64a075c83e025fbaf2e8d11e1c6
+      sonar_token: sqp_21ab28b792a3fa7622d2c066c63298f53f6a6020
 
 ---
 
