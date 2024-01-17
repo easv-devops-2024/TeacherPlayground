@@ -37,8 +37,10 @@ steps:
 - name: lint
   image: aosapps/drone-sonar-plugin
   settings:
-      sonar_host: "http://sonar.setgo.dk:9000"
-      sonar_token: "sqp_868fb7e253699a588836724200eb79b5ab379e9b"
+    sonar_host:
+      from_secret: sonar_host
+    sonar_token:
+      from_secret: sonar_token
 
 ---
 
